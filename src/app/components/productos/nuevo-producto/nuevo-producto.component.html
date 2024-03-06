@@ -1,0 +1,51 @@
+<div class="formulario">
+  <p class="nota">Registro de productos: recuerde ingresar todos los campos</p>
+  <p class="datos">Datos:</p>
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <div>
+      <input type="text" formControlName="codigo" placeholder="Codigo">
+      <span *ngIf="formulario.get('codigo') && formulario.get('codigo')!.errors && formulario.get('codigo')!.touched">
+        Por favor, ingrese solo texto en el campo de nombre.
+      </span>
+    </div>
+
+    <div>
+      <input type="text" formControlName="nombre" placeholder="Nombre">
+      <span *ngIf="formulario.get('nombre') && formulario.get('nombre')!.errors && formulario.get('nombre')!.touched">
+        Por favor, ingrese solo texto en el campo de nombre.
+      </span>
+    </div>
+
+    <div>
+      <input type="number" formControlName="precio" placeholder="Precio">
+      <span *ngIf="formulario.get('precio')!.invalid && (formulario.get('precio')?.dirty || formulario.get('precio')?.touched)">
+        Por favor, ingrese un correo válido.
+      </span>
+    </div>
+
+    <div>
+      <input type="number" formControlName="stock" placeholder="Stock">
+      <span *ngIf="formulario.get('stock')!.invalid && (formulario.get('stock')!.dirty || formulario.get('stock')!.touched)">
+        Por favor, ingrese un valor válido.
+      </span>
+    </div>
+
+    <div>
+      <!-- <input class="fecha" type="number" formControlName="activo" placeholder="activo"> -->
+
+      <select name="" id="" formControlName="activo">
+        <option [selected]="true" value="1">Si</option>
+        <option value="0">No</option>
+      </select>
+
+      <span *ngIf="formulario.get('activo')!.invalid && (formulario.get('activo')?.dirty || formulario.get('activo')?.touched)">
+        Por favor, ingrese una fecha válida.
+      </span>
+    </div>
+
+
+    
+    <button type="submit">Guardar Datos</button>
+  </form>
+</div>

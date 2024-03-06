@@ -1,0 +1,62 @@
+
+
+
+<div class="table-container">
+  <p class="rojo">
+    Tabla de productos
+  </p>
+
+  <div class="buscar">
+    <label for="">Buscar: </label>
+    <!-- <input type="text" (keyup)="buscar($event)"> -->
+    
+  </div>
+
+  <button id="nuevo" routerLink="/producto/nuevo" >Nuevo +</button>
+  
+  <div class="separador">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Activo</th>
+            <th>FechaCreacion</th>
+            <th class="eliminar">Acciones</th>
+          </tr>
+        </thead>
+        
+
+        <tbody>
+          <!-- <tr *ngFor="let persona of personas"> -->
+          <tr *ngFor="let producto of productos">
+            <td>{{ producto.idProducto }}</td>
+            <td>{{ producto.codigo }}</td>
+            <td >{{ producto.nombre }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.activo }}</td>
+            <td>{{ producto.fechaCreacion }}</td>
+            <td class="eliminar">
+              <button (click)="eliminarPorId(producto.idProducto)">❌</button>
+              <button class="editar" (click)="toggleModoEdicion(producto)">✏️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pup-up" [ngClass]="{ 'oculto': modoOculto }">
+    <div class="pop-up-container">
+      <span class="cerrar" (click)="editarModoOcuto()">❌</span>
+      <app-editar-producto class="editar" [productosEditar]="productosEditar" (modoOculto)="editarModoOcuto()" ></app-editar-producto>
+      
+    </div>
+  </div>
+
+</div>

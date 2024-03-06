@@ -1,0 +1,160 @@
+/* Estilos para hacer que la tabla ocupe toda la pantalla */
+.table-container {
+  width: 97%; 
+  height: 100vh; 
+  margin: auto;
+  /* margin-top: 25px; */
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  /* padding: 20px; */
+  /* position: relative; */
+  padding-top: 20px;
+}
+.table-container .separador{
+  /* padding: 20px 0; */
+  /* display: flex;
+  justify-content: center; */
+  margin-top: 20px;
+}
+.separador div{
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgb(182, 182, 182) ;
+  border-radius: 20px;
+}
+table {
+  width: 95%; 
+  border-collapse: collapse;
+  
+  border-radius: 8px;
+ 
+}
+
+th, td {
+  border: none; 
+  padding: 8px; 
+  text-align: left; /* Alineación del texto a la izquierda */
+}
+
+/* Estilos para la cabecera de la tabla */
+th {
+  background-color: #fff;
+  color: rgb(97, 97, 97); /* Color del texto */
+}
+
+/* Estilos para las filas pares e impares */
+tr:nth-child(odd) {
+  background-color: #f2f8ff; /* Color de fondo para filas pares */
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff; /* Color de fondo para filas impares */
+}
+
+td.eliminar, th.eliminar{
+  text-align: center;
+  
+}
+td button{
+  background: rgb(255, 255, 255);
+  border: 1px solid red;
+  border-radius: 2px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+td button.editar, td button.check{
+  background: none;
+  border: none;
+  
+}
+
+/* .visible{
+  display: block;
+} */
+
+.ocultar{
+  display: none;
+}
+.buscar input{
+  width: 300px;
+  height: 40px;
+  margin: 10px;
+  border: none;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 20px;
+  padding-left: 10px;
+}
+.buscar{
+  margin: 20px;
+}
+.buscar label{
+  font-weight: 600;
+
+}
+
+p.rojo{
+  background-color: rgb(226, 68, 68);
+  color: #fff;
+  width: 100%;
+  height: 50px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 20px;
+  
+}
+
+
+
+div.pup-up{
+  position: absolute;
+  bottom:  0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #a3a3a371;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+div.pop-up-container{
+  position: relative;
+}
+div.pup-up span{
+  position: absolute;
+  top: -10px;
+  right: -7px;
+  background: #fff;
+  border-radius: 100px;
+  border: 1px solid #a2a2a2;
+  padding: 2px;
+  cursor: pointer;
+}
+
+
+.table-container .pup-up.oculto{
+  display: none;
+}
+
+button#nuevo {
+
+  border-radius: 100px;
+  background-color: rgb(67, 164, 255);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 5px 30px ;
+  border: none;
+  cursor: pointer;
+  margin-left: 20px;
+}

@@ -1,0 +1,59 @@
+.pop-up{
+  background-color: rgb(255, 255, 255);
+  height: 400px;
+  width: 600px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}
+
+.pop-up form{
+  margin: auto;
+  width: 90%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-self: center;
+  align-content: center;
+}
+
+.pop-up form input, button, select{
+  width: 85%;
+  height: 40px;
+  margin: 10px;
+  border: none;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 10px;
+  padding-left: 5px;
+}
+
+.pop-up form input.fecha{
+  padding-right: 5px;
+}
+
+.pop-up form input:focus{
+  border: 1px solid rgb(165, 204, 255);
+}
+
+.pop-up form button{
+  grid-column: 1/2;
+  border-radius: 100px;
+  background-color: rgb(67, 164, 255);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+form div span{
+  margin-left: 10px;
+  font-size: 12px;
+  color: #e24444;
+}
+
+form div{
+  display: flex;
+  flex-direction: column;
+}

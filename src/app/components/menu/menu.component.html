@@ -1,0 +1,34 @@
+<p class="facturacion">Facturación</p>
+
+<div class="menu-container">
+  <ul>
+    <details >
+      <summary  >Catálogos</summary>
+      <li>
+        <button
+          routerLinkActive="underline"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="/" 
+          >
+          📁 Cliente
+        </button>
+      </li>
+      <li>
+        <button routerLink="/producto" routerLinkActive="underline">
+          🛒 Producto
+        </button>
+      </li>
+    </details>
+
+    <details >
+      <summary>Documentos</summary>
+        <li>
+          <button routerLink="/factura" routerLinkActive="underline">
+          📝 Factura
+          </button>
+        </li>
+    </details>
+
+
+  </ul>
+</div>

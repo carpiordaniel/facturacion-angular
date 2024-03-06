@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100vh;
+}
+
+.container .content {
+  background-color: rgb(235, 235, 235);
+}
+.rutas{
+  background-color: #fff;
+  height: 100vh;
+  margin: 20px;
+  border-radius: 20px;
+}

@@ -1,0 +1,62 @@
+
+
+
+<div class="table-container">
+  <p class="rojo">
+    Tabla de clientes
+  </p>
+
+  <div class="buscar">
+    <label for="">Buscar: </label>
+    <!-- <input type="text" (keyup)="buscar($event)"> -->
+    
+  </div>
+
+  <button id="nuevo" routerLink="/cliente/nuevo" >Nuevo +</button>
+  
+  <div class="separador">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Dni</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Correo</th>
+            <th>Activo</th>
+            <th>FechaCreacion</th>
+            <th class="eliminar">Acciones</th>
+          </tr>
+        </thead>
+        
+
+        <tbody>
+          <!-- <tr *ngFor="let persona of personas"> -->
+          <tr *ngFor="let cliente of clientes">
+            <td>{{ cliente.idCliente }}</td>
+            <td>{{ cliente.rucDni }}</td>
+            <td >{{ cliente.nombre }}</td>
+            <td>{{ cliente.direccion }}</td>
+            <td>{{ cliente.correo }}</td>
+            <td>{{ cliente.activo }}</td>
+            <td>{{ cliente.fechaCreacion }}</td>
+            <td class="eliminar">
+              <button (click)="eliminarPorId(cliente.idCliente)">❌</button>
+              <button class="editar" (click)="toggleModoEdicion(cliente)">✏️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pup-up" [ngClass]="{ 'oculto': modoOculto }">
+    <div class="pop-up-container">
+      <span class="cerrar" (click)="editarModoOcuto()">❌</span>
+      <app-editar-cliente class="editar" [personaEditar]="personaEditar" (modoOculto)="editarModoOcuto()"></app-editar-cliente>
+      
+    </div>
+  </div>
+
+</div>
