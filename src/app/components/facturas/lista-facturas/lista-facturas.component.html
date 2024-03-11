@@ -1,0 +1,50 @@
+
+<div class="table-container">
+  <p class="rojo">
+    Tabla de facturas
+  </p>
+
+  <div class="buscar">
+    <label for="">Buscar: </label>
+    <input type="text" (keyup)="buscar($event)">
+    
+  </div>
+
+  
+  <div class="separador">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Num Factura</th>
+            <th>Ruc</th>
+            <th>Subtotal</th>
+            <th>Igv</th>
+            <th>total</th>
+            <th class="eliminar">Acciones</th>
+          </tr>
+        </thead>
+        
+
+        <tbody>
+
+          <tr *ngFor="let factura of facturasFiltradas">
+            <td>{{ factura.idFcatura }}</td>
+            <td>{{ factura.numeroFactura }}</td>
+            <td >{{ factura.rucCliente }}</td>
+            <td>{{ factura.subtotal }}</td>
+            <td>{{ factura.igv }}</td>
+            <td>{{ factura.total }}</td>
+            <td class="eliminar">
+              <button (click)="eliminarPorId(factura.idFcatura)">❌</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>

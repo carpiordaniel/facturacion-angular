@@ -1,19 +1,13 @@
 /* Estilos para hacer que la tabla ocupe toda la pantalla */
 .table-container {
   width: 97%; 
-  height: 100vh; 
+  height: 100%; 
   margin: auto;
-  /* margin-top: 25px; */
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  /* padding: 20px; */
-  /* position: relative; */
   padding-top: 20px;
 }
 .table-container .separador{
-  /* padding: 20px 0; */
-  /* display: flex;
-  justify-content: center; */
   margin-top: 20px;
 }
 .separador div{
@@ -34,22 +28,21 @@ table {
 th, td {
   border: none; 
   padding: 8px; 
-  text-align: left; /* Alineación del texto a la izquierda */
+  text-align: left; 
 }
 
-/* Estilos para la cabecera de la tabla */
 th {
   background-color: #fff;
-  color: rgb(97, 97, 97); /* Color del texto */
+  color: rgb(97, 97, 97); 
 }
 
-/* Estilos para las filas pares e impares */
+
 tr:nth-child(odd) {
-  background-color: #f2f8ff; /* Color de fondo para filas pares */
+  background-color: #f2f8ff; 
 }
 
 tr:nth-child(even) {
-  background-color: #ffffff; /* Color de fondo para filas impares */
+  background-color: #ffffff; 
 }
 
 td.eliminar, th.eliminar{
@@ -71,9 +64,6 @@ td button.editar, td button.check{
   
 }
 
-/* .visible{
-  display: block;
-} */
 
 .ocultar{
   display: none;

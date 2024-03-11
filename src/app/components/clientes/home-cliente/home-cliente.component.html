@@ -8,11 +8,11 @@
 
   <div class="buscar">
     <label for="">Buscar: </label>
-    <!-- <input type="text" (keyup)="buscar($event)"> -->
+    <input type="text" (keyup)="buscar($event)">
     
   </div>
 
-  <button id="nuevo" routerLink="/cliente/nuevo" >Nuevo +</button>
+  <button id="nuevo" routerLink="/app/cliente/nuevo" >Nuevo +</button>
   
   <div class="separador">
     <div>
@@ -32,8 +32,7 @@
         
 
         <tbody>
-          <!-- <tr *ngFor="let persona of personas"> -->
-          <tr *ngFor="let cliente of clientes">
+          <tr *ngFor="let cliente of filtroClientes">
             <td>{{ cliente.idCliente }}</td>
             <td>{{ cliente.rucDni }}</td>
             <td >{{ cliente.nombre }}</td>

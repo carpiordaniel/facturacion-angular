@@ -1,0 +1,169 @@
+<div class="formulario">
+  
+  <div class="btn-nuevo-cont">
+    <button (click)="cambiarModoOculto()" class="btn-nuevo">➕ Nuevo usuario</button>
+  </div>
+  
+  <label for="">Datos factura</label>
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div>
+      
+      <input class="disabled-input"  type="text" formControlName="numFactura" placeholder="numFactura">
+      <span *ngIf="formulario.get('numFactura') && formulario.get('numFactura')!.errors && formulario.get('numFactura')!.touched">
+        Por favor, ingrese solo texto en el campo de nombre.
+      </span>
+    </div>
+
+
+    <div>
+
+      <input (focus)="listarClientes()" type="text" list="cliente" (change)="seleccionarCliente($event.target)" formControlName="cliente" placeholder="cliente">
+      
+      <datalist id="cliente" >
+        <option *ngFor="let cliente of clientes" [value]="cliente.idCliente">{{cliente.nombre}}</option>
+      </datalist>
+      
+      <span *ngIf="formulario.get('cliente')!.invalid && (formulario.get('cliente')?.dirty || formulario.get('cliente')?.touched)">
+        Por favor, ingrese un correo válido.
+      </span>
+
+    </div>
+    
+    
+    <div>
+      
+      <input class="disabled-input"  type="text" formControlName="ruc" placeholder="ruc" [value]="clienteSeleccionado?.rucDni" >
+      <span *ngIf="formulario.get('ruc')!.invalid && (formulario.get('ruc')!.dirty || formulario.get('ruc')!.touched)">
+        Por favor, ingrese un valor válido.
+      </span>
+    </div>
+
+    <div>
+      <input class="disabled-input" type="text" formControlName="razonSocial" placeholder="razonSocial" [value]="clienteSeleccionado?.nombre" >
+      <span *ngIf="formulario.get('razonSocial')!.invalid && (formulario.get('razonSocial')!.dirty || formulario.get('razonSocial')!.touched)">
+        Por favor, ingrese un valor válido.
+      </span>
+    </div>
+    
+    <div>
+      <input class="disabled-input" type="email " formControlName="correo" placeholder="correo" [value]="clienteSeleccionado?.correo" >
+      <span *ngIf="formulario.get('correo')!.invalid && (formulario.get('correo')!.dirty || formulario.get('correo')!.touched)">
+        Por favor, ingrese un valor válido.
+      </span>
+    </div>
+
+
+  <div class="productos">
+    <label for="">Productos</label>
+  
+    <form [formGroup]="productosForm">
+      <!-- <div>
+        <input type="number" formControlName="codProducto" placeholder="Código del producto">
+        <span *ngIf="productosForm.get('codProducto')!.invalid && (productosForm.get('codProducto')!.dirty || productosForm.get('codProducto')!.touched)">
+          Por favor, ingrese un valor válido.
+        </span>
+      </div> -->
+
+      <div>
+        <p>Id producto:</p>
+        <input (focus)="listarProductos()" 
+        type="text" list="productos" 
+        (change)="seleccionarProdcuto($event.target)" 
+        formControlName="codProducto" 
+        placeholder="productos"
+        >
+
+        <datalist id="productos" >
+          <option *ngFor="let producto of productos" [value]="producto.codigo">{{producto.nombre}}</option>
+        </datalist>
+        
+        <span *ngIf="productosForm.get('codProducto')!.invalid && (productosForm.get('codProducto')!.dirty || productosForm.get('codProducto')!.touched)">
+          Por favor, ingrese un valor válido.
+        </span>
+  
+      </div>
+
+      <div>
+        <p>Nombre producto:</p>
+        <input class="disabled-input"  type="text" formControlName="nombreProducto" placeholder="Nombre del producto" [value]="productoSeleccionado?.nombre">
+        <span *ngIf="productosForm.get('nombreProducto')!.invalid && (productosForm.get('nombreProducto')!.dirty || productosForm.get('nombreProducto')!.touched)">
+          Por favor, ingrese un valor válido.
+        </span>
+      </div>
+      <div>
+        <p>Precio:</p>
+        <input class="disabled-input"  type="number" formControlName="precioProducto" placeholder="Precio del producto" [value]="productoSeleccionado?.precio" >
+        <span *ngIf="productosForm.get('precioProducto')!.invalid && (productosForm.get('precioProducto')!.dirty || productosForm.get('precioProducto')!.touched)">
+          Por favor, ingrese un valor válido.
+        </span>
+      </div>
+      <div>
+        <p>Cantidad:</p>
+        <input min="1" type="number" formControlName="cantidadProducto" placeholder="Cantidad del producto" (keyup)="validarStock($event)">
+        <span *ngIf="productosForm.get('cantidadProducto')?.hasError('cantidadInvalida')  && productosForm.get('cantidadProducto')!.invalid && (productosForm.get('cantidadProducto')!.dirty || productosForm.get('cantidadProducto')!.touched)">
+          Por favor, ingrese un valor válido.
+        </span>
+        <span *ngIf="!hayStock">*Valor mayor al stock disponible</span>
+
+      
+      </div>
+
+      <p *ngIf="this.productosForm.get('nombreProducto')?.value" > *Tiene en stock: {{stockProducto}}</p>
+      <button (click)="agregarProducto()">➕ Agregar producto</button>
+    </form>
+
+  </div>
+
+
+
+
+  <div class="separador">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Cod Producto</th>
+            <th>Nombre Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th class="eliminar">Acciones</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          
+          <tr *ngFor="let listProducto of listProductos">
+            <td>{{ listProducto.codProducto }}</td>
+            <td >{{ listProducto.nombreProducto }}</td>
+            <td>{{ listProducto.precioProducto }}</td>
+            <td>{{ listProducto.cantidadProducto }}</td>
+
+            <td id="eliminar" class="eliminar">
+              <button (click)="eliminarPorId(listProducto)">❌</button>
+            </td>
+          </tr>
+          <tr class="sin-datos-tabla" *ngIf="listProductos.length === 0">No hay productos registrados*</tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="valores-a-pagar">
+    <p class="impuesto-usado"><span>*Porcentaje de impuesto usado: {{porcentajeIva}}%</span> </p>
+    <p><span>subtotal: </span> {{subtotal | currency }}  </p>
+    <p><span>IGV:</span> ${{igv | number: '1.2-2' }}</p>
+    <p><span>Total:</span> ${{total | number: '1.2-2'  }}</p>
+   
+  </div>
+    
+    <button type="submit">Guardar Datos</button>
+  </form>
+  
+
+
+
+  <div class="nuevo-usuario" [ngClass]="{ 'oculto': modoOculto }">
+    <span class="cerrar" (click)="cambiarModoOculto()">❌</span>
+    <app-nuevo></app-nuevo>
+  </div>
+</div>

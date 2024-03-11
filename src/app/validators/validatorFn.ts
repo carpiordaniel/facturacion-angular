@@ -45,3 +45,13 @@ export function validarDecimalConDosDecimales(): ValidatorFn {
     return null; 
   };
 }
+
+export function cantidadMayorQueCero(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const cantidad = control.value;
+    if (cantidad !== null && cantidad <= 0) {
+      return { 'cantidadInvalida': true };
+    }
+    return null;
+  };
+}

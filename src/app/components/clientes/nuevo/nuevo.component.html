@@ -1,33 +1,35 @@
+
 <div class="formulario">
   <p class="nota">Registro de clientes: recuerde ingresar todos los campos</p>
   <p class="datos">Datos:</p>
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div>
-      <input type="text" formControlName="rucDni" placeholder="Dni">
-      <span *ngIf="formulario.get('rucDni') && formulario.get('rucDni')!.errors && formulario.get('rucDni')!.touched">
-        Por favor, ingrese solo texto en el campo de nombre.
+      <input [maxLength]="15" pattern="[a-zA-Z0-9]*" type="text" formControlName="rucDni" placeholder="Dni" (keyup)="validarCodigo($event) " >
+      <span *ngIf="formulario.get('cantidadProducto')?.hasError('cantidadInvalida')  && formulario.get('rucDni') && formulario.get('rucDni')!.errors && formulario.get('rucDni')!.touched">
+        Por favor, ingrese solo números
       </span>
+      <span *ngIf="existe">Cliente ya existe</span>
     </div>
 
     <div>
       <input type="text" formControlName="nombre" placeholder="Nombre">
       <span *ngIf="formulario.get('nombre') && formulario.get('nombre')!.errors && formulario.get('nombre')!.touched">
-        Por favor, ingrese solo texto en el campo de nombre.
+        Por favor, ingrese solo texto
       </span>
     </div>
 
     <div>
       <input type="text" formControlName="direccion" placeholder="Direccion">
       <span *ngIf="formulario.get('direccion')!.invalid && (formulario.get('direccion')?.dirty || formulario.get('direccion')?.touched)">
-        Por favor, ingrese un correo válido.
+        Por favor, ingrese un valor válido.
       </span>
     </div>
 
     <div>
       <input type="email" formControlName="correo" placeholder="Correo">
       <span *ngIf="formulario.get('correo')!.invalid && (formulario.get('correo')!.dirty || formulario.get('correo')!.touched)">
-        Por favor, ingrese un valor válido.
+        Por favor, ingrese un correo válido.
       </span>
     </div>
 

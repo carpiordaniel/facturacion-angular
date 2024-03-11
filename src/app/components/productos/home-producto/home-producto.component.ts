@@ -10,6 +10,7 @@ export class HomeProductoComponent {
   
   productos: any ; 
   productosEditar: any;
+  filtroProductos: any;
   modoOculto: boolean = true;
   constructor(private productoService: ProductoService) {
   }
@@ -20,6 +21,7 @@ export class HomeProductoComponent {
   getData(){
     this.productoService.getData().subscribe(data => {
       this.productos = data;
+      this.filtroProductos = data;
       
     })
   }
@@ -34,17 +36,19 @@ export class HomeProductoComponent {
       console.error('Error al eliminar producto:', error);
     });
   }
-  // buscar(texto: Event) {
-  //   const input = texto.target as HTMLInputElement;
-  //   this.personasFiltradas = this.personas.filter( (persona: any) =>
-  //     persona.nombre.toLowerCase().includes(input.value.toLowerCase()) ||
-  //     persona.apellidos.toLowerCase().includes(input.value.toLowerCase()) ||
-  //     persona.email.toLowerCase().includes(input.value.toLowerCase()) ||
-  //     persona.fecha.toLowerCase().includes(input.value.toLowerCase()) ||
-  //     persona.salario.toString().includes(input.value.toLowerCase())
-  //   );
-  //   console.log(this.personasFiltradas)
-  // }
+  buscar(texto: Event) {
+    const input = texto.target as HTMLInputElement;
+    console.log(this.filtroProductos);
+    this.filtroProductos = this.productos.filter( (persona: any) =>
+      persona.idProducto.toString().includes(input.value.toLowerCase()) ||
+      persona.codigo.toLowerCase().includes(input.value.toLowerCase()) ||
+      persona.nombre.toLowerCase().includes(input.value.toLowerCase()) ||
+      persona.precio.toString().includes(input.value.toLowerCase()) ||
+      persona.stock.toString().includes(input.value.toLowerCase()) ||
+      persona.activo.toString().includes(input.value.toLowerCase())
+    );
+    console.log(this.filtroProductos)
+  }
 
   toggleModoEdicion(persona: any) {
     this.productosEditar = persona;

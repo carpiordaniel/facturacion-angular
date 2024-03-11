@@ -4,23 +4,24 @@
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div>
-      <input type="text" formControlName="codigo" placeholder="Codigo">
+      <input type="text" pattern="[a-zA-Z0-9]*" formControlName="codigo" placeholder="Codigo" (keyup)="validarCodigo($event)">
       <span *ngIf="formulario.get('codigo') && formulario.get('codigo')!.errors && formulario.get('codigo')!.touched">
-        Por favor, ingrese solo texto en el campo de nombre.
+        Por favor, ingrese un valor válido.
       </span>
+      <span *ngIf="existe">Código de producto ya existe</span>
     </div>
 
     <div>
       <input type="text" formControlName="nombre" placeholder="Nombre">
       <span *ngIf="formulario.get('nombre') && formulario.get('nombre')!.errors && formulario.get('nombre')!.touched">
-        Por favor, ingrese solo texto en el campo de nombre.
+        Por favor, ingrese solo texto
       </span>
     </div>
 
     <div>
       <input type="number" formControlName="precio" placeholder="Precio">
       <span *ngIf="formulario.get('precio')!.invalid && (formulario.get('precio')?.dirty || formulario.get('precio')?.touched)">
-        Por favor, ingrese un correo válido.
+        Por favor, ingrese un valor válido.
       </span>
     </div>
 

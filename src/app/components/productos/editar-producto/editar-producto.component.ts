@@ -20,7 +20,7 @@ export class EditarProductoComponent {
   constructor(private fb: FormBuilder, private productoService: ProductoService) {
     this.personaForm = this.fb.group({
       idProducto: '',
-      codigo: ['', [Validators.required]],
+      codigo: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
       nombre: ['', [Validators.required, soloTexto()]],
       precio: ['', [Validators.required, validarDecimalConDosDecimales()]],
       stock: ['', [Validators.required, validarDecimalConDosDecimales()]],
@@ -60,14 +60,14 @@ export class EditarProductoComponent {
     this.productoService.actualizar(valoresFormulario).subscribe(
       response => {
         console.log('Persona editada correctamente:', response);
-        alert('Persona editada correctamente');
+        alert('Producto editado correctamente');
         this.modoOculto.emit();
         // window.location.reload();
       
       },
       error => {
-        console.error('Error al editar persona:', error);
-        alert('Error al editar persona: los campos no cumplen con los formatos requeridos');	
+        console.error('Error al editar producto:', error);
+        alert('Error al editar producto: los campos no cumplen con los formatos requeridos');	
       }
     )
   }

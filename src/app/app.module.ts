@@ -17,6 +17,9 @@ import { NuevoProductoComponent } from './components/productos/nuevo-producto/nu
 import { EditarClienteComponent } from './components/clientes/editar-cliente/editar-cliente.component';
 import { EditarProductoComponent } from './components/productos/editar-producto/editar-producto.component';
 import { LoginComponent } from './page/login/login.component';
+import { PageModule } from './page/page.module';
+import { CabfacturaComponent } from './components/facturas/cabfactura/cabfactura.component';
+import { ListaFacturasComponent } from './components/facturas/lista-facturas/lista-facturas.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { LoginComponent } from './page/login/login.component';
     EditarClienteComponent,
     EditarProductoComponent,
     LoginComponent,
+    CabfacturaComponent,
+    ListaFacturasComponent,
+   
 
     
   ],
@@ -41,7 +47,8 @@ import { LoginComponent } from './page/login/login.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // PageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

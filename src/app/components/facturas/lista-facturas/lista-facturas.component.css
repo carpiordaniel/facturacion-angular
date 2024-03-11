@@ -1,10 +1,12 @@
 /* Estilos para hacer que la tabla ocupe toda la pantalla */
 .table-container {
   width: 97%; 
-  height: 100vh; 
+  height: 100%; 
   margin: auto;
+  margin-top: 20px;
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  padding-top: 20px;
+  padding: 20px;
 }
 .table-container .separador{
   margin-top: 20px;
@@ -35,6 +37,7 @@ th {
   color: rgb(97, 97, 97); 
 }
 
+
 tr:nth-child(odd) {
   background-color: #f2f8ff; 
 }
@@ -61,7 +64,6 @@ td button.editar, td button.check{
   border: none;
   
 }
-
 
 .ocultar{
   display: none;
@@ -96,6 +98,8 @@ p.rojo{
   padding-left: 20px;
   
 }
+
+
 
 div.pup-up{
   position: absolute;

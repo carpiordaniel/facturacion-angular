@@ -1,0 +1,70 @@
+.container-login{
+  background-color: #36434f;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-login .contenido{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #ffffff;
+  width: 60%;
+  height: 80%;
+  border-radius: 15px;
+}
+
+.container-login .contenido .imagen,
+.container-login .contenido .login-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container-login .contenido .imagen img{
+  width: 70%;
+}
+
+.container-login .contenido .login-container h2{
+  margin-bottom: 40px;
+}
+
+.container-login .contenido .login-container form {
+  width: 70%;
+}
+
+.container-login .contenido .login-container form input,
+.container-login .contenido .login-container form button{
+  background-color: #e6e6e6;
+  border-radius: 50px;
+  border: none;
+  height: 50px;
+  margin: 5px 0;
+  padding-left: 20px;
+  font-size: 15px;
+  width: 100%;
+  color: #656565;
+}
+
+.container-login .contenido .login-container form button{
+  background-color: #57b846;
+  color: #ffffff;
+  padding: 0;
+  margin-top: 15px;
+  cursor: pointer;
+  
+}
+.container-login .contenido .login-container form p{
+  
+  color: #fa6c6c;
+  padding-left: 10px;
+  font-weight: 600;
+
+  
+}
+button:disabled {
+  opacity: 0.4; 
+  cursor: none;
+}

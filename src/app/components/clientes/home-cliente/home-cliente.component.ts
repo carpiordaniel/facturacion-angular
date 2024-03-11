@@ -9,6 +9,7 @@ export class HomeClienteComponent {
 
   clientes: any ; 
   personaEditar: any;
+  filtroClientes: any;
   modoOculto: boolean = true;
   constructor(private clientesService: ClientesService) {
   }
@@ -19,6 +20,7 @@ export class HomeClienteComponent {
   getData(){
     this.clientesService.getData().subscribe(data => {
       this.clientes = data;
+      this.filtroClientes = data;
       
     })
   }
@@ -33,17 +35,19 @@ export class HomeClienteComponent {
       console.error('Error al eliminar persona:', error);
     });
   }
-  // buscar(texto: Event) {
-  //   const input = texto.target as HTMLInputElement;
-  //   this.personasFiltradas = this.personas.filter( (persona: any) =>
-  //     persona.nombre.toLowerCase().includes(input.value.toLowerCase()) ||
-  //     persona.apellidos.toLowerCase().includes(input.value.toLowerCase()) ||
-  //     persona.email.toLowerCase().includes(input.value.toLowerCase()) ||
-  //     persona.fecha.toLowerCase().includes(input.value.toLowerCase()) ||
-  //     persona.salario.toString().includes(input.value.toLowerCase())
-  //   );
-  //   console.log(this.personasFiltradas)
-  // }
+  buscar(texto: Event) {
+    const input = texto.target as HTMLInputElement;
+    console.log(input.value);
+    console.log(this.clientes);
+    this.filtroClientes = this.clientes.filter( (cleinte: any) =>
+      cleinte.idCliente.toString().includes(input.value.toLowerCase()) ||
+      cleinte.rucDni.toLowerCase().includes(input.value.toLowerCase()) ||
+      cleinte.nombre.toLowerCase().includes(input.value.toLowerCase()) ||
+      cleinte.direccion.toLowerCase().includes(input.value.toLowerCase()) ||
+      cleinte.correo.toLowerCase().includes(input.value.toLowerCase())
+    );
+    console.log(this.filtroClientes)
+  }
 
   toggleModoEdicion(persona: any) {
     this.personaEditar = persona;

@@ -4,9 +4,9 @@
     <div>
       <label for="rucDni">Dni:</label>
       <div>
-        <input type="text" formControlName="rucDni" placeholder="Dni">
+        <input maxlength="15" type="text" formControlName="rucDni" placeholder="Dni">
         <span *ngIf="personaForm.get('rucDni') && personaForm.get('rucDni')!.errors && personaForm.get('rucDni')!.touched">
-          Por favor, ingrese solo texto.
+          Por favor, ingrese solo números
         </span>
       </div>
     </div>
@@ -25,7 +25,7 @@
       <div>
         <input type="text" formControlName="direccion" placeholder="Direccion">
         <span *ngIf="personaForm.get('direccion')?.invalid && (personaForm.get('direccion')?.dirty || personaForm.get('direccion')?.touched)">
-          Por favor, ingrese un correo válido.
+          Por favor, ingrese un valor válido.
         </span>
       </div>
     </div>
@@ -44,7 +44,7 @@
       <div>
         <input class="" type="email" formControlName="correo" placeholder="Correo">
         <span *ngIf="personaForm.get('correo')?.invalid && (personaForm.get('correo')?.dirty || personaForm.get('correo')?.touched)">
-          Por favor, ingrese una fecha válida.
+          Por favor, ingrese un correo válido.
         </span>
       </div>
     </div>

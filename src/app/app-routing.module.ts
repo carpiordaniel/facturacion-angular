@@ -7,31 +7,28 @@ import { Cod404Component } from './components/cod404/cod404.component';
 import { NuevoComponent } from './components/clientes/nuevo/nuevo.component';
 import { NuevoProductoComponent } from './components/productos/nuevo-producto/nuevo-producto.component';
 import { LoginComponent } from './page/login/login.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { AuthGuard } from './guards/guard.guard';
+import { loginGuard } from './guards/login.guard';
 
 const routes: Routes = [
+
   {
     path: '',
-    component: LoginComponent
+    component: MenuComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path: 'cliente',
-    component: ClienteComponent
+    path: 'app',
+    component: MenuComponent,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./page/page.module').then(m => m.PageModule)
   },
+  
   {
-    path: 'producto',
-    component: ProductoComponent
-  },
-  {
-    path: 'factura',
-    component: FacturaComponent
-  },
-  {
-    path: 'cliente/nuevo',
-    component: NuevoComponent
-  },
-  {
-    path: 'producto/nuevo',
-    component: NuevoProductoComponent
+    path: 'login',
+    component: LoginComponent,
+    // canActivate: [loginGuard],
   },
   {
     path: '**',

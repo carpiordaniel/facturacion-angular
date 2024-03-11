@@ -10,12 +10,12 @@ import { ClientesService } from 'src/app/service/clientes.service';
 export class NuevoComponent {
 
   formulario: FormGroup;
-
+  existe: boolean = false;
   constructor(private formBuilder: FormBuilder, private clientesService: ClientesService) {
     this.formulario = this.formBuilder.group({
-      rucDni: ['', [Validators.required]],
+      rucDni: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(15)]],
       nombre: ['', [Validators.required, soloTexto()]],
-      direccion: ['', [Validators.required, soloTexto()]],
+      direccion: ['', [Validators.required]],
       correo: ['', [Validators.required, validarCorreo()]],
       activo: [1],
     });
@@ -41,5 +41,31 @@ export class NuevoComponent {
       alert('Error al enviar datos: los campos no cumplen con los formatos requeridos');	
     });
   }
+
+  validarCodigo(event: any) {
+    const input = event.target as HTMLInputElement;
+  
+    // Eliminar cualquier validación anterior
+    //this.formulario.get('codigo')!.setErrors(null);
+    this.existe = false;
+  
+    const delay = 300;
+  
+    setTimeout(() => {
+      this.clientesService.verificarExistencia(input.value).subscribe(data => {
+        if ( parseInt(data.data) > 0 ) {	
+          this.existe = true;
+          console.log('El código ya existe', data.data);
+
+          this.formulario.get('rucDni')!.setErrors({ 'codigoExistente': true });
+        } else {
+          this.formulario.get('rucDni')!.setErrors(null);
+          this.existe = false;
+        }
+      });
+    }, delay);
+  }
+
+
   
 }

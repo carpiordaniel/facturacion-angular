@@ -11,10 +11,11 @@ import { ProductoService } from 'src/app/service/productos.service';
 export class NuevoProductoComponent {
 
   formulario: FormGroup;
+  existe: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private productoService: ProductoService) {
     this.formulario = this.formBuilder.group({
-      codigo: ['', [Validators.required]],
+      codigo: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
       nombre: ['', [Validators.required, soloTexto()]],
       precio: ['', [Validators.required, validarDecimalConDosDecimales()]],
       stock: ['', [Validators.required, validarDecimalConDosDecimales()]],
@@ -41,6 +42,30 @@ export class NuevoProductoComponent {
       console.error('Error al enviar datos:', error);
       alert('Error al enviar datos: los campos no cumplen con los formatos requeridos');	
     });
+  }
+
+  validarCodigo(event: any) {
+    const input = event.target as HTMLInputElement;
+  
+    // Eliminar cualquier validación anterior
+    //this.formulario.get('codigo')!.setErrors(null);
+    this.existe = false;
+  
+    const delay = 300;
+  
+    setTimeout(() => {
+      this.productoService.verificarExistencia(input.value).subscribe(data => {
+        if (data.data) {
+          this.existe = true;
+          console.log('El código ya existe');
+
+          this.formulario.get('codigo')!.setErrors({ 'codigoExistente': true });
+        } else {
+          //this.formulario.get('codigo')!.setErrors(null);
+          this.existe = false;
+        }
+      });
+    }, delay);
   }
 
 }

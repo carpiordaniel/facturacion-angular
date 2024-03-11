@@ -21,9 +21,9 @@ export class EditarClienteComponent {
   constructor(private fb: FormBuilder, private clienteService: ClientesService) {
     this.personaForm = this.fb.group({
       idCliente: '',
-      rucDni: ['', [Validators.required]],
+      rucDni: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*'), Validators.maxLength(15)]],
       nombre: ['', [Validators.required, soloTexto()]],
-      direccion: ['', [Validators.required, soloTexto()]],
+      direccion: ['', [Validators.required,]],
       correo: ['', [Validators.required, validarCorreo()]],
       activo: ['', [Validators.required]],
       fechaCreacion: ['', [Validators.required]],
@@ -62,13 +62,13 @@ export class EditarClienteComponent {
     this.clienteService.actualizar(valoresFormulario).subscribe(
       response => {
         console.log('Persona editada correctamente:', response);
-        alert('Persona editada correctamente');
+        alert('Cliente editado correctamente');
         // window.location.reload();
         this.modoOculto.emit();
       },
       error => {
         console.error('Error al editar persona:', error);
-        alert('Error al editar persona: los campos no cumplen con los formatos requeridos');	
+        alert('Error al editar cliente: los campos no cumplen con los formatos requeridos');	
       }
     )
   }
